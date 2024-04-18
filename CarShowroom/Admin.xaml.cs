@@ -37,24 +37,28 @@ namespace CarShowroom
             mn.Show();
             this.Close();
         }
-
         private void btnRedZakaz_Click(object sender, RoutedEventArgs e)
         {
             RedZakaz red = new RedZakaz();
             red.Show();
             this.Close();
         }
-
         private void btnRedSotrud_Click(object sender, RoutedEventArgs e)
         {
             RedSotrudniki red = new RedSotrudniki();
             red.Show();
             this.Close();
         }
-
         private void btnRedAuto_Click(object sender, RoutedEventArgs e)
         {
             RedAuto red = new RedAuto();
+            red.Show();
+            this.Close();
+        }
+        private void btnRedRaspisanie_Click(object sender, RoutedEventArgs e)
+        {
+            Raspisanie red = new Raspisanie();
+            red.getDostup();
             red.Show();
             this.Close();
         }
@@ -64,7 +68,6 @@ namespace CarShowroom
             WatchSotrudniki watch = new WatchSotrudniki();
             watch.Show();
         }
-
         private void btnWatchZakaz_Click(object sender, RoutedEventArgs e)
         {
             WatchZakaz watch = new WatchZakaz();

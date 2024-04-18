@@ -19,13 +19,34 @@ namespace CarShowroom
     /// </summary>
     public partial class Raspisanie : Window
     {
+        public void getDostup()
+        {
+            dostup = 1;
+        }
         public Raspisanie()
         {
             InitializeComponent();
         }
+        int dostup = 0;
         private void About_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Здесь можно мониторить расписание работы персонала и редактировать его за Администратора.");
+        }
+
+        private void menuBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (dostup == 1)
+            {
+                Admin ad = new Admin();
+                ad.Show();
+                this.Close();
+            }
+            else if (dostup == 0)
+            {
+                Prodavec prod = new Prodavec();
+                prod.Show();
+                this.Close();
+            }
         }
     }
 }

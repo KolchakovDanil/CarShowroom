@@ -91,14 +91,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="8" />
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="54*" />
-                <RowDefinition Height="54*"/>
-                <RowDefinition Height="54*"/>
-                <RowDefinition Height="54*"/>
-                <RowDefinition Height="54*"/>
-                <RowDefinition Height="45*"/>
-                <RowDefinition Height="85*"/>
-                <RowDefinition Height="30*"/>
+                <RowDefinition Height="55*" />
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="82*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="31*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Администратор" FontFamily="Courier New" FontSize="36" HorizontalAlignment="Center" Width="362" TextAlignment="Center" Margin="166,0"/>
 
@@ -107,8 +107,9 @@
             <Button x:Name="btnBack" Grid.Row="8" Style="{StaticResource btn}" Content="Выйти из учётной записи" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="37" Click="btnBack_Click"/>
             <TextBlock TextWrapping="Wrap" Foreground="Gray" Text="Выберите действие" FontFamily="Courier New" FontSize="12" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="9" Width="270"/>
             <Button x:Name="btnRedAuto" Grid.Row="4" Style="{StaticResource btn}" Content="Редактировать автомобиль" HorizontalAlignment="Center" VerticalAlignment="Top" Width="530" Height="37" Click="btnRedAuto_Click"/>
-            <Button x:Name="btnWatchZakaz" Grid.Row="6" Style="{StaticResource btn}" Content="Посмотреть все заказы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="480" Height="37" Click="btnWatchZakaz_Click"/>
-            <Button x:Name="btnWatchSotrud" Grid.Row="5" Style="{StaticResource btn}" Content="Посмотреть всех сотрудников" HorizontalAlignment="Center" VerticalAlignment="Top" Width="480" Height="37" Click="btnWatchSotrud_Click"/>
+            <Button x:Name="btnRedRaspisanie" Grid.Row="5" Style="{StaticResource btn}" Content="Редактировать расписание" HorizontalAlignment="Center" VerticalAlignment="Top" Width="530" Height="37" Click="btnRedRaspisanie_Click"/>
+            <Button x:Name="btnWatchZakaz" Grid.Row="7" Style="{StaticResource btn}" Content="Посмотреть все заказы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="480" Height="37" Click="btnWatchZakaz_Click"/>
+            <Button x:Name="btnWatchSotrud" Grid.Row="6" Style="{StaticResource btn}" Content="Посмотреть всех сотрудников" HorizontalAlignment="Center" VerticalAlignment="Top" Width="480" Height="37" Click="btnWatchSotrud_Click"/>
 
         </Grid>
     </Grid>

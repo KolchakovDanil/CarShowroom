@@ -81,8 +81,49 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Button" x:Key="btnDel">
+            <Setter Property="Background" Value="#FFF3F3F3"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Courier New"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFF96262"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FFFF3535"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="212*"/>
+            <ColumnDefinition Width="375*"/>
+            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="151*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="26*" />
@@ -91,19 +132,19 @@
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Background="White" FontFamily="Courier New" FontSize="14" Grid.RowSpan="2">
+        <Menu Grid.Row="0" Background="White" FontFamily="Courier New" FontSize="14" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-0.267,0">
             <MenuItem x:Name="menuBack" Header="Назад" Click="menuBack_Click"/>
             <MenuItem Header="" Width="650" IsEnabled="False"/>
             <MenuItem Header="_Справка">
                 <MenuItem Header="_О программе" Click="About_Click" Background="White" FontFamily="Courier New" FontSize="14"/>
             </MenuItem>
         </Menu>
-        <TextBlock Grid.Row="4" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Text="Отредактируйте или удалите неправильный заказ" FontFamily="Courier New" FontSize="12" Height="42" Width="358" Margin="218,0"/>
-        <Button Grid.Row="3" x:Name="btnSave" Style="{StaticResource btn}" Content="Сохранить" VerticalAlignment="Top" Visibility="Visible" Width="100" Height="30" Click="btnSave_Click" Margin="512,0,182,0"/>
-        <Button Grid.Row="3" x:Name="btnDelete" Style="{StaticResource btn}" Content="Удалить" VerticalAlignment="Top" Visibility="Visible" Width="100" Height="30" Click="btnDelete_Click" Margin="640,0,54,0"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Text="Отредактируйте или удалите неправильный заказ" FontFamily="Courier New" FontSize="12" Height="42" Width="358"/>
+        <Button Grid.Row="3" Grid.Column="1" x:Name="btnSave" Style="{StaticResource btn}" Content="Сохранить" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Visible" Width="100" Height="30" Click="btnSave_Click"/>
+        <Button Grid.Row="3" Grid.Column="3" x:Name="btnDelete" Style="{StaticResource btnDel}" Content="Удалить" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Visible" Width="100" Height="30" Click="btnDelete_Click"/>
 
 
-        <Grid Grid.Row="2" VerticalAlignment="Top" Height="418" Margin="0,1,0,0">
+        <Grid Grid.Row="2" VerticalAlignment="Top" Height="418" Margin="0,1,-0.267,0" Grid.ColumnSpan="4">
             <!--Visibility="Visible"-->
             <TextBlock Style="{StaticResource txtBlock}" Margin="586,212,138,179" Text="Цена:"/>
             <TextBlock Style="{StaticResource txtBlock}" Margin="373,212,341,179" Text="Марка:"/>
@@ -115,18 +156,18 @@
 
             <TextBox Name="FIO" Style="{StaticResource txtBox}" PreviewTextInput="inpatr" MaxLines="1" MaxLength="45" Margin="332,93,303,298" Text=""/>
             <TextBox Name="phone" Style="{StaticResource txtBox}" FontSize="16" PreviewTextInput="inphone" MaxLines="1" MaxLength="11" Margin="607,93,60,298" Text=""/>
-            <TextBox Name="Password" Style="{StaticResource txtBox}" FontSize="14" TextWrapping="Wrap" Margin="464,318,28,10" Text=""/>
+            <TextBox Name="txtInfo" Style="{StaticResource txtBox}" FontSize="16" TextWrapping="Wrap" Margin="464,318,28,10" Text=""/>
             <TextBox x:Name="Sur" Style="{StaticResource txtBox}" PreviewTextInput="insur" MaxLines="1" MaxLength="45" Margin="321,49,303,342" Text="" Width="170"/>
             <TextBox x:Name="Name" Style="{StaticResource txtBox}" PreviewTextInput="inname" MaxLines="1" MaxLength="45" Margin="564,49,60,342" Text="" Width="170"/>
-            <TextBox x:Name="Login" Style="{StaticResource txtBox}" MaxLines="1" MaxLength="10" Margin="656,212,28,179" Text=""/>
-            <ComboBox Name="combPost" Style="{StaticResource cmbBox}" HorizontalAlignment="Left" Margin="453,212,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+            <TextBox x:Name="txtPrice" Style="{StaticResource txtBox}" MaxLines="1" MaxLength="10" Margin="656,212,28,179" Text="" IsEnabled="False"/>
+            <ComboBox Name="combMark" Style="{StaticResource cmbBox}" FontSize="16" HorizontalAlignment="Left" Margin="453,212,0,0" VerticalAlignment="Top" Width="120" Height="30" SelectionChanged="combMark_SelectionChanged"/>
 
             <ComboBox x:Name="combID" Style="{StaticResource cmbBox}" Visibility="Visible" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="85" Height="30" SelectionChanged="combID_SelectionChanged"/>
             <TextBlock x:Name="txtID" Style="{StaticResource txtBlock}" Visibility="Visible" Margin="10,11,602,372" Text="Код заказа"/>
             <TextBlock x:Name="txtID_Copy" Style="{StaticResource txtBlock}" Visibility="Visible" Margin="398,10,214,373" Text="Данные клиента"/>
             <TextBlock x:Name="txtID_Copy1" Style="{StaticResource txtBlock}" Visibility="Visible" Margin="398,148,214,235" Text="Данные товара"/>
             <TextBlock Style="{StaticResource txtBlock}" Margin="373,266,330,125" Text="Модель:"/>
-            <ComboBox Style="{StaticResource cmbBox}" HorizontalAlignment="Left" Margin="464,266,0,0" VerticalAlignment="Top" Width="109" Height="30"/>
+            <ComboBox x:Name="combModel" Style="{StaticResource cmbBox}" FontSize="16" HorizontalAlignment="Left" Margin="464,266,0,0" VerticalAlignment="Top" Width="302" Height="30" SelectionChanged="combModel_SelectionChanged"/>
 
             <Image x:Name="imgCar" HorizontalAlignment="Left" Height="260" Margin="10,148,0,0" VerticalAlignment="Top" Width="334"/>
 

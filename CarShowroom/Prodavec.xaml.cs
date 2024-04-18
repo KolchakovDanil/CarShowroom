@@ -48,6 +48,7 @@ namespace CarShowroom
         {
             Raspisanie raspisanie = new Raspisanie();
             raspisanie.Show();
+            this.Close();
         }
     }
 }

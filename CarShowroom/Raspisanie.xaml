@@ -80,8 +80,8 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="1" Background="White" FontFamily="Courier New" FontSize="14">
-            <MenuItem Header="" Width="810" IsEnabled="False"/>
-
+            <MenuItem x:Name="menuBack" Header="Назад" Click="menuBack_Click"/>
+            <MenuItem Header="" Width="750" IsEnabled="False"/>
             <MenuItem Header="_Справка">
                 <MenuItem Header="_О программе" Click="About_Click" Background="White" FontFamily="Courier New" FontSize="14"/>
             </MenuItem>
