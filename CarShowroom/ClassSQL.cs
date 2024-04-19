@@ -10,7 +10,7 @@ namespace CarShowroom
     {
         public static string GetConnSQL()
         {
-            return @"Data Source = DESKTOP-2GTC7VU\SQLEXPRESS;Initial Catalog=Avtosalon;Integrated Security=True";
+            return @"Data Source = DESKTOP-MJM6IQP\SQLEXPRESS;Initial Catalog=Avtosalon;Integrated Security=True";
         }
     }
 }

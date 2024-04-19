@@ -353,7 +353,7 @@ namespace CarShowroom
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-            dlg.InitialDirectory = @"CarShowroom\CarShowroom\bin\Debug\PhotoCars";
+            dlg.InitialDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, "PhotoCars");
 
             dlg.Filter = "Изображения (*.jpg, *.png)|*.jpg;*.png|Все файлы (*.*)|*.*";
 
