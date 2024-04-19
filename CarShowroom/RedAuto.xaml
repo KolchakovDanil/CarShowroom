@@ -140,8 +140,8 @@
             </MenuItem>
         </Menu>
         <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Text="Отредактируйте или удалите неправильный заказ" FontFamily="Courier New" FontSize="12" Height="42" Width="358" Margin="8.267,0,8.733,0"/>
-        <Button Grid.Row="3" Grid.Column="1" x:Name="btnSave" Style="{StaticResource btn}" Content="Сохранить" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Visible" Width="100" Height="30" Margin="0,0,1.733,0" />
-        <Button Grid.Row="3" Grid.Column="3" x:Name="btnDelete" Style="{StaticResource btnDel}" Content="Удалить" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Visible" Width="100" Height="30" Margin="0.267,0,0,0" />
+        <Button Grid.Row="3" Grid.Column="1" x:Name="btnSave" Style="{StaticResource btn}" Content="Сохранить" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Hidden" Width="100" Height="30" Margin="0,0,1.733,0" Click="btnSave_Click" />
+        <Button Grid.Row="3" Grid.Column="3" x:Name="btnDelete" Style="{StaticResource btnDel}" Content="Удалить" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Hidden" Width="100" Height="30" Margin="0.267,0,0,0" Click="btnDelete_Click" />
 
 
         <Grid Grid.Row="2" VerticalAlignment="Top" Height="418" Margin="0,1,-0.267,0" Grid.ColumnSpan="4" Grid.RowSpan="2">
@@ -149,12 +149,12 @@
             <TextBlock Style="{StaticResource txtBlock}" Margin="597,39,130.267,352" Text="Цена:"/>
             <TextBlock Style="{StaticResource txtBlock}" Margin="358,39,350,352" Text="Марка:"/>
             <TextBlock Style="{StaticResource txtBlock}" FontSize="20" Margin="3,381,648.267,10" Text="Фотография:"/>
-            <TextBox x:Name="txtImg" Style="{StaticResource txtBox}" MaxLines="1" MaxLength="10" Margin="665,39,19,352" Text="" IsEnabled="False"/>
+            <TextBox x:Name="txtPrice" Style="{StaticResource txtBox}" PreviewTextInput="inphone" MaxLines="1" MaxLength="10" Margin="665,39,19,352" Text="" IsEnabled="False"/>
 
             <TextBlock Style="{StaticResource txtBlock}" Margin="358,155,321,236" Text="Описание:"/>
             <TextBox Name="txtInfo" Style="{StaticResource txtBox}" FontSize="16" TextWrapping="Wrap" Margin="473,155,19,173" Text=""/>
-            <TextBox x:Name="txtPrice" Style="{StaticResource txtBox}" FontSize="16" Margin="147,381,377.267,10" Text="" IsEnabled="False"/>
-            <ComboBox Name="combMark" Style="{StaticResource cmbBox}" FontSize="16" HorizontalAlignment="Left" Margin="445,39,0,0" VerticalAlignment="Top" Width="147" Height="30"/>
+            <TextBox x:Name="txtImg" Style="{StaticResource txtBox}" FontSize="16" Margin="147,381,377.267,10" Text="" IsEnabled="False"/>
+            <ComboBox Name="combMark" Style="{StaticResource cmbBox}" FontSize="16" HorizontalAlignment="Left" Margin="445,39,0,0" VerticalAlignment="Top" Width="147" Height="30" SelectionChanged="combMark_SelectionChanged"/>
 
             <Grid VerticalAlignment="Top" Height="419" Margin="0,0,0.267,-1">
                 <Grid.RowDefinitions>
@@ -169,8 +169,10 @@
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnAddMark" Style="{StaticResource btn}" Content="Добавить марку" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Visible" Width="150" Height="20" Grid.Row="1" Grid.Column="1"/>
                 <Button x:Name="btnAdd" Style="{StaticResource btn}" Content="Добавить автомобиль" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Visible" Width="200" Height="30" Grid.Row="2" Grid.Column="1"/>
-                <Button x:Name="btnRed" Style="{StaticResource btn}" Visibility="Visible" Content="Редактировать автомобиль" VerticalAlignment="Top" Height="30" Grid.Column="1" Grid.Row="3" Width="250" Margin="0,0,0,-30"/>
-                <Button x:Name="btnRedImg" Style="{StaticResource btn}" Visibility="Visible" Content="Изменить фото" VerticalAlignment="Top" Height="20" Grid.Column="0" Grid.Row="3" Width="150" Margin="0,0,0,-20"/>
+                <Button x:Name="btnRed" Style="{StaticResource btn}" Visibility="Visible" Content="Редактировать автомобиль" VerticalAlignment="Top" Height="30" Grid.Column="1" Grid.Row="3" Width="250" Margin="0,0,0,-30" Click="btnRed_Click"/>
+                <Button x:Name="btnBackAdd" Style="{StaticResource btn}" Visibility="Hidden" Content="Вернуться к добавлению" VerticalAlignment="Top" Height="30" Grid.Column="1" Grid.Row="3" Width="250" Margin="0,0,0,-30" Click="btnBackAdd_Click"/>
+
+                <Button x:Name="btnRedImg" Style="{StaticResource btn}" Visibility="Visible" Content="Изменить фото" VerticalAlignment="Top" Height="20" Grid.Column="0" Grid.Row="3" Width="150" Margin="0,0,0,-20" Click="btnRedImg_Click"/>
 
             </Grid>
 
@@ -178,10 +180,10 @@
 
 
 
-            <ComboBox x:Name="combID" Style="{StaticResource cmbBox}" Visibility="Visible" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="85" Height="30"/>
-            <TextBlock x:Name="txtID" Style="{StaticResource txtBlock}" Visibility="Visible" Margin="10,11,602,372" Text="Код автомобиля"/>
+            <ComboBox x:Name="combID" Style="{StaticResource cmbBox}" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="85" Height="30" SelectionChanged="combID_SelectionChanged"/>
+            <TextBlock x:Name="txtID" Style="{StaticResource txtBlock}" Visibility="Hidden" Margin="10,11,602,372" Text="Код автомобиля"/>
             <TextBlock Style="{StaticResource txtBlock}" Margin="358,103,350,288" Text="Модель:"/>
-            <ComboBox x:Name="combModel" Style="{StaticResource cmbBox}" FontSize="16" HorizontalAlignment="Left" Margin="445,103,0,0" VerticalAlignment="Top" Width="330" Height="30"/>
+            <ComboBox x:Name="combModel" Style="{StaticResource cmbBox}" FontSize="16" HorizontalAlignment="Left" Margin="445,103,0,0" VerticalAlignment="Top" Width="330" Height="30" SelectionChanged="combModel_SelectionChanged"/>
 
             <Image x:Name="imgCar" HorizontalAlignment="Left" Height="270" Margin="10,92,0,0" VerticalAlignment="Top" Width="334"/>
 
