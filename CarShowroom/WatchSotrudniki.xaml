@@ -76,22 +76,52 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="500*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="1" Background="White" FontFamily="Courier New" FontSize="14">
-            <MenuItem Header="" Width="810" IsEnabled="False"/>
+        <Menu Grid.Row="1" Background="White" FontFamily="Courier New" FontSize="14" Grid.RowSpan="2">
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Сохранить" Click="saveReport_Click" Background="White" FontFamily="Courier New" FontSize="14"/>
+            </MenuItem>
+            
+            <MenuItem Header="" Width="760" IsEnabled="False"/>
 
             <MenuItem Header="_Справка">
                 <MenuItem Header="_О программе" Click="About_Click" Background="White" FontFamily="Courier New" FontSize="14"/>
             </MenuItem>
         </Menu>
 
+        <Grid Grid.Row="2" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="459*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Поиск: " Grid.Row="0" Style="{StaticResource txtBlock}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,207,0" Height="25" Width="84"/>
+            <TextBox x:Name="txtSearch" Grid.Row="0" Style="{StaticResource txtBox}" VerticalAlignment="Top" HorizontalAlignment="Left" TextChanged="txtSearch_TextChanged" Width="415" Margin="240,0,0,0" Grid.ColumnSpan="2" Height="24" />
 
-        <Grid Grid.Row="1">
-            
-            
-            
+            <ListView x:Name="listSotrudniki" Grid.Row="1" BorderBrush="White" Foreground="Black" FontSize="14" Grid.ColumnSpan="2">
+                <ListView.Background>
+                    <SolidColorBrush Color="White" Opacity="0.7"/>
+                </ListView.Background>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_ID}" Header="Id" Width="30"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_SURNAME}" Header="Фамилия" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_NAME}" Header="Имя" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_PATR}" Header="Отчество" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_PHONE}" Header="Телефон" Width="120"/>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding S_LOGIN}" Header="Логин" Width="80"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_PASSWORD}" Header="Пароль" Width="80"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding P_NAME}" Header="Должность" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

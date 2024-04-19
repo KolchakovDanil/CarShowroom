@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShowroom"
         mc:Ignorable="d"
-        Title="Просмотр заказов" Height="550" Width="900"
+        Title="Просмотр заказов" Height="550" Width="1300"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
@@ -76,22 +76,55 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="500*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="1" Background="White" FontFamily="Courier New" FontSize="14">
-            <MenuItem Header="" Width="810" IsEnabled="False"/>
+        <Menu Grid.Row="1" Background="White" FontFamily="Courier New" FontSize="14" Grid.RowSpan="2">
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Сохранить" Click="saveReport_Click" Background="White" FontFamily="Courier New" FontSize="14"/>
+            </MenuItem>
+
+            <MenuItem Header="" Width="1160" IsEnabled="False"/>
 
             <MenuItem Header="_Справка">
                 <MenuItem Header="_О программе" Click="About_Click" Background="White" FontFamily="Courier New" FontSize="14"/>
             </MenuItem>
         </Menu>
 
+        <Grid Grid.Row="2" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="459*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Поиск: " Grid.Row="0" Style="{StaticResource txtBlock}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,357,0" Height="24" Width="84"/>
+            <TextBox x:Name="txtSearch" Grid.Row="0" Style="{StaticResource txtBox}" VerticalAlignment="Top" HorizontalAlignment="Center" TextChanged="txtSearch_TextChanged" Width="715" Grid.ColumnSpan="2" Height="24" />
 
-        <Grid Grid.Row="1">
-           
-            
-            
+            <ListView x:Name="listSotrudniki" Grid.Row="1" BorderBrush="White" Foreground="Black" FontSize="14" Grid.ColumnSpan="2">
+                <ListView.Background>
+                    <SolidColorBrush Color="White" Opacity="0.7"/>
+                </ListView.Background>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Z_ID}" Header="Id" Width="30"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding K_SURNAME}" Header="Фамилия" Width="140"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding K_NAME}" Header="Имя" Width="140"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding K_PATR}" Header="Отчество" Width="140"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding K_PHONE}" Header="Телефон" Width="120"/>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding M_NAME}" Header="Марка автомобиля" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding C_NAME}" Header="Название автомобиля" Width="160"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding S_SURNAME}" Header="Сотрудник" Width="110"/>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Z_CINA}" Header="Итоговая цена" Width="140"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Z_DATE}" Header="Дата" Width="130"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

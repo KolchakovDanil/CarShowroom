@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShowroom"
+        
         mc:Ignorable="d"
         Title="Raspisanie" Height="550" Width="900"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
+        
         <Style TargetType="TextBox" x:Key="txtBox">
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="BorderBrush" Value="Gray"/>
@@ -72,14 +74,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
+
+    </Window.Resources >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="24*" />
+            <RowDefinition Height="453*"/>
+            <RowDefinition Height="44*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="1" Background="White" FontFamily="Courier New" FontSize="14">
+        <Menu Grid.Row="0" Background="White" FontFamily="Courier New" FontSize="14" Grid.RowSpan="2">
             <MenuItem x:Name="menuBack" Header="Назад" Click="menuBack_Click"/>
             <MenuItem Header="" Width="750" IsEnabled="False"/>
             <MenuItem Header="_Справка">
@@ -88,10 +93,21 @@
         </Menu>
 
 
-        <Grid Grid.Row="1">
-            <!--<Button x:Name="btnBack" Content="Back" Style="{StaticResource btn}" HorizontalAlignment="Left" Margin="314,201,0,0" VerticalAlignment="Top" Width="111"/>-->
+        <Grid Grid.Row="2" Grid.RowSpan="2">
+            <DataGrid x:Name="dgSchedule" AutoGenerateColumns="False" ItemsSource="{Binding ScheduleItems}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,48">
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="*" />
+                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding EmployeeName}" Width="*" />
+                    <DataGridTextColumn Header="Тип работы" Binding="{Binding WorkType}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-
+            
         </Grid>
+        <Button Grid.Row="3" Content="Добавить запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Click="AddScheduleItem_Click"/>
+        <Button Grid.Row="3" Content="Редактировать запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Click="EditScheduleItem_Click" Margin="234,0,0,0"/>
+        <Button Grid.Row="3" Content="Удалить запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Click="DeleteScheduleItem_Click" Margin="514,0,0,0"/>
+
     </Grid>
 </Window>

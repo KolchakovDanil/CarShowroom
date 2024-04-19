@@ -28,6 +28,14 @@ namespace CarShowroom
             CarsID();
             MarkName();
         }
+        public void Update()
+        {
+            CarsID();
+            MarkName();
+        }
+      
+
+
         private void insur(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^а-яА-Я]");
@@ -148,15 +156,15 @@ namespace CarShowroom
                     {
                         saveZak.Open();
 
-                        string saveQuery2 = "SELECT C_NAME FROM Cars WHERE C_ID ='" + combModel.SelectedItem + "'";
+                        string saveQuery2 = "SELECT C_NAME FROM Cars WHERE C_ID ='" + combID.SelectedItem + "'";
                         SqlCommand save2 = new SqlCommand(saveQuery2, saveZak);
                         string saveCarName = Convert.ToString(save2.ExecuteScalar());
 
                         string saveQuery3 = "SELECT M_ID FROM Models WHERE M_NAME ='" + combMark.SelectedItem + "'";
                         SqlCommand save3 = new SqlCommand(saveQuery3, saveZak);
-                        string saveMarkName = Convert.ToString(save3.ExecuteScalar());
+                        string saveMarkID = Convert.ToString(save3.ExecuteScalar());
 
-                        string saveCar = "Update Cars set C_MODELID = '" + saveMarkName + "', C_NAME = '" + saveCarName + "', C_PRICE = '" + txtPrice.Text + "', C_IMG = '" + txtImg.Text + "', C_INFO = '" + txtInfo.Text + "' where C_ID =" + combID.SelectedItem;
+                        string saveCar = "Update Cars set C_MODELID = '" + saveMarkID + "', C_NAME = '" + saveCarName + "', C_PRICE = '" + txtPrice.Text + "', C_IMG = '" + txtImg.Text + "', C_INFO = '" + txtInfo.Text + "' where C_ID =" + combID.SelectedItem;
                         SqlCommand sz = new SqlCommand(saveCar, saveZak); sz.ExecuteNonQuery();
 
                         saveZak.Close();
@@ -226,7 +234,11 @@ namespace CarShowroom
             btnSave.Visibility = Visibility.Hidden;
             btnDelete.Visibility = Visibility.Hidden;
             btnBackAdd.Visibility = Visibility.Hidden;
+            txtModel.Visibility = Visibility.Visible;
 
+            txtPrice.IsEnabled = true;
+
+            txtModel.Clear();
             txtPrice.Clear();
             txtInfo.Clear();
             txtImg.Clear();
@@ -246,7 +258,11 @@ namespace CarShowroom
             btnSave.Visibility = Visibility.Visible;
             btnDelete.Visibility = Visibility.Visible;
             btnBackAdd.Visibility = Visibility.Visible;
+            txtModel.Visibility = Visibility.Hidden;
 
+            txtPrice.IsEnabled = false;
+
+            txtModel.Clear();
             txtPrice.Clear();
             txtInfo.Clear();
             txtImg.Clear();
@@ -339,7 +355,7 @@ namespace CarShowroom
                     }
                     else
                     {
-                        MessageBox.Show("Изображение не найдено для выбранной книги.");
+                        MessageBox.Show("Изображение не найдено для выбранного автомобиля.");
                     }
                 }
                 catch (Exception ex)
@@ -380,5 +396,50 @@ namespace CarShowroom
                 imgCar.Source = new BitmapImage(new Uri(imagePath));
             }
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (combMark.SelectedIndex == -1 || txtModel.Text == "" || txtInfo.Text == "" || txtImg.Text == "" || txtPrice.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили все данные");
+            }
+            else
+            {
+                combID.SelectedIndex = -1;
+                string connectionString = ClassSQL.GetConnSQL();
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                    connection.Open();
+                    string Mark = "SELECT M_ID FROM Models WHERE M_NAME = '" + combMark.SelectedItem + "'";
+                    SqlCommand cmd = new SqlCommand(Mark, connection);
+                    int markId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    string addAll = "Insert into Cars (C_NAME, C_PRICE, C_IMG, C_INFO, C_MODELID) values ('" + txtModel.Text + "','" + txtPrice.Text + "','" + txtImg.Text + "','" + txtInfo.Text + "','" + markId + "')";
+                    SqlCommand saveAddAll = new SqlCommand(addAll, connection); saveAddAll.ExecuteNonQuery();
+
+                    connection.Close();
+                    btnBackAdd_Click(null, null);
+                    MessageBox.Show("Автомобиль успешно добавлен");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    throw;
+                }
+                finally
+                {
+
+                }
+            }
+        }
+
+        private void btnAddMark_Click(object sender, RoutedEventArgs e)
+        {
+            addMark am = new addMark();
+            am.Show();
+            //this.Close();
+        }
+
     }
 }
