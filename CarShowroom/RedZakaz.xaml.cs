@@ -59,7 +59,7 @@ namespace CarShowroom
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Программа разработана для упрощения работы персонала на предприяти \"Автосалон\".");
+            MessageBox.Show("Здесь осуществляется редактирование и удаление заказов.");
         }
         public void ZakazID()
         {

@@ -50,5 +50,11 @@ namespace CarShowroom
             raspisanie.Show();
             this.Close();
         }
+
+        private void btnWatchZakaz_Click(object sender, RoutedEventArgs e)
+        {
+            WatchZakaz wz = new WatchZakaz();
+            wz.Show();
+        }
     }
 }

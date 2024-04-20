@@ -8,9 +8,10 @@
         mc:Ignorable="d"
         Title="Raspisanie" Height="550" Width="900"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded">
     <Window.Resources>
-        
+
         <Style TargetType="TextBox" x:Key="txtBox">
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="BorderBrush" Value="Gray"/>
@@ -80,8 +81,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24*" />
-            <RowDefinition Height="453*"/>
-            <RowDefinition Height="44*"/>
+            <RowDefinition Height="459*"/>
+            <RowDefinition Height="38*"/>
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" Background="White" FontFamily="Courier New" FontSize="14" Grid.RowSpan="2">
@@ -94,20 +95,44 @@
 
 
         <Grid Grid.Row="2" Grid.RowSpan="2">
-            <DataGrid x:Name="dgSchedule" AutoGenerateColumns="False" ItemsSource="{Binding ScheduleItems}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,48">
-                
+            <DataGrid x:Name="dgSchedule" CurrentCellChanged="dgSchedule_CurrentCellChanged" CanUserAddRows="False" PreviewTextInput="dgSchedule_PreviewTextInput" AutoGenerateColumns="False" IsEnabled="True" ItemsSource="{Binding ScheduleItems}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,252,48" SelectionChanged="dgSchedule_SelectionChanged">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="*" />
-                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding EmployeeName}" Width="*" />
-                    <DataGridTextColumn Header="Тип работы" Binding="{Binding WorkType}" Width="*" />
+                    <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="200" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Сотрудник" Binding="{Binding EmployeeName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Тип работы" Binding="{Binding WorkType}"  IsReadOnly="False" Width="100" >
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="MaxLength" Value="1"/>
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WorkType}" Value="Р">
+                                        <Setter Property="Background" Value="Yellow"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding WorkType}" Value="Н">
+                                        <Setter Property="Background" Value="Green"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
                 </DataGrid.Columns>
+
             </DataGrid>
+            <Button x:Name="btnAllDate" Style="{StaticResource btn}" Content="Все даты" Height="26" Margin="670,175,45,296" Click="btnAllDate_Click"/>
+            <Calendar x:Name="dateRaspisanie" HorizontalAlignment="Left" Margin="670,7,0,0" VerticalAlignment="Top" SelectedDatesChanged="dateRaspisanie_SelectedDatesChanged"/>
 
-            
+
         </Grid>
-        <Button Grid.Row="3" Content="Добавить запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Click="AddScheduleItem_Click"/>
-        <Button Grid.Row="3" Content="Редактировать запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Click="EditScheduleItem_Click" Margin="234,0,0,0"/>
-        <Button Grid.Row="3" Content="Удалить запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Click="DeleteScheduleItem_Click" Margin="514,0,0,0"/>
-
+        <Button x:Name="btnAdd" Grid.Row="3" Content="Добавить запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Visible" Width="220" Click="AddScheduleItem_Click" Height="23"/>
+        <Button x:Name="btnEdit" Grid.Row="3" Content="Редактировать запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Visible" Width="260" Click="EditScheduleItem_Click" Margin="234,0,0,0" Height="23"/>
+        <Button x:Name="btnDel" Grid.Row="3" Content="Удалить запись" Style="{StaticResource btn}" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Visible" Width="220" Click="DeleteScheduleItem_Click" Margin="514,0,0,0" Height="23"/>
+        <TextBox x:Name="txtID" Style="{StaticResource txtBox}" IsEnabled="False" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="20" Margin="0,0,0,20"/>
+        <TextBlock Style="{StaticResource txtBlock}" Grid.Row="2" Text="Id строчки" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="20"/>
+        <TextBlock Grid.Row="2" Style="{StaticResource txtBlock}" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Height="90" Width="245" Margin="0,217,0,152" ><Run Text="Р - сотрудник должен "/><LineBreak/><Run Text="    быть на смене"/><LineBreak/><Run/><LineBreak/><Run Text="H - "/><Run Text="сотрудник в этот день"/><LineBreak/><Run Text="    не работает"/></TextBlock>
     </Grid>
 </Window>

@@ -155,6 +155,9 @@
     <Compile Include="addMark.xaml.cs">
       <DependentUpon>addMark.xaml</DependentUpon>
     </Compile>
+    <Compile Include="addNewRaspisanie.xaml.cs">
+      <DependentUpon>addNewRaspisanie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Raspisanie.xaml.cs">
       <DependentUpon>Raspisanie.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <DependentUpon>Zakaz.xaml</DependentUpon>
     </Compile>
     <Page Include="addMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="addNewRaspisanie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

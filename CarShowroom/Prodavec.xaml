@@ -91,17 +91,19 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="8" />
                 <RowDefinition Height="90"/>
-                <RowDefinition Height="78*" />
-                <RowDefinition Height="111*"/>
-                <RowDefinition Height="82*"/>
-                <RowDefinition Height="34*"/>
+                <RowDefinition Height="53*" />
+                <RowDefinition Height="56*"/>
+                <RowDefinition Height="91*"/>
+                <RowDefinition Height="87*"/>
+                <RowDefinition Height="36*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Продавец" FontFamily="Courier New" FontSize="36" HorizontalAlignment="Center" Width="362" TextAlignment="Center" Margin="166,0"/>
+            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Продавец" FontFamily="Courier New" FontSize="36" HorizontalAlignment="Center" Width="362" TextAlignment="Center"/>
+            <Button x:Name="btnWatchZakaz" Grid.Row="3" Style="{StaticResource btn}" Content="Посмотреть заказы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="450" Height="37" Click="btnWatchZakaz_Click"/>
 
             <Button x:Name="btnZakaz" Grid.Row="2" Style="{StaticResource btn}" Content="Оформить заказ" HorizontalAlignment="Center" VerticalAlignment="Top" Width="530" Height="37" Click="btnZakaz_Click"/>
-            <Button x:Name="btnRaspisanie" Grid.Row="3" Style="{StaticResource btn}" Content="Посмотреть расписание" HorizontalAlignment="Center" VerticalAlignment="Top" Width="530" Height="37" Click="btnRaspisanie_Click"/>
-            <Button x:Name="btnBack" Grid.Row="4" Style="{StaticResource btn}" Content="Выйти из учётной записи" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="37" Click="btnBack_Click"/>
-            <TextBlock TextWrapping="Wrap" Foreground="Gray" Text="Выберите действие" FontFamily="Courier New" FontSize="12" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="5" Width="270"/>
+            <Button x:Name="btnRaspisanie" Grid.Row="4" Style="{StaticResource btn}" Content="Посмотреть расписание" HorizontalAlignment="Center" VerticalAlignment="Top" Width="450" Height="37" Click="btnRaspisanie_Click"/>
+            <Button x:Name="btnBack" Grid.Row="5" Style="{StaticResource btn}" Content="Выйти из учётной записи" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="37" Click="btnBack_Click"/>
+            <TextBlock TextWrapping="Wrap" Foreground="Gray" Text="Выберите действие" FontFamily="Courier New" FontSize="12" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="6" Width="270"/>
 
         </Grid>
     </Grid>
